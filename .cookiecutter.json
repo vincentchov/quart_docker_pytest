@@ -1,0 +1,14 @@
+{
+  "_output_dir": "/home/vincenzo/workspace",
+  "_template": "gh:cjolowicz/cookiecutter-hypermodern-python",
+  "author": "Vincent Chov",
+  "copyright_year": "2022",
+  "development_status": "Development Status :: 1 - Planning",
+  "email": "vincentchov@gmail.com",
+  "friendly_name": "Quart Docker Pytest",
+  "github_user": "vincentchov",
+  "license": "MIT",
+  "package_name": "quart_docker_pytest",
+  "project_name": "quart-docker-pytest",
+  "version": "0.0.0"
+}
