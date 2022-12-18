@@ -1,0 +1,22 @@
+{
+    email {{ LETSENCRYPT_EMAIL }}
+    http_port 80
+    https_port 443
+{% raw %}}{% endraw %}
+
+{% if LETSENCRYPT_DNS_PLUGIN and CADDY_USE_WILDCARDS -%}
+*.{{ BASE_DOMAIN }}, {{ BASE_DOMAIN }} {
+    @server host server.{{ BASE_DOMAIN }}
+    handle @server {
+        reverse_proxy server:80
+    }
+
+    handle {
+        abort
+    }
+}
+{% else -%}
+server.{{ BASE_DOMAIN }} {
+    reverse_proxy server:80
+}
+{% endif -%}
