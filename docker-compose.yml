@@ -1,0 +1,58 @@
+---
+version: "3.8"
+name: "quart_docker_pytest"
+services:
+  reverse_proxy:
+    build:
+      context: reverse_proxy
+    container_name: reverse_proxy
+    cap_add:
+      - NET_ADMIN
+    depends_on:
+      - manage
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - "./reverse_proxy/data:/data"
+      - "./reverse_proxy/config:/config"
+      - "./reverse_proxy/Caddyfiles:/etc/caddy"
+    environment:
+      - ACME_AGREE=true
+  server:
+    build:
+      context: .
+      target: development_build
+    command: poetry run python -m quart run --host=0.0.0.0 --port=80
+    container_name: server
+    env_file: .env
+    environment:
+      - QUART_ENV=development
+      - QUART_DEBUG=1
+    image: quart_docker_pytest
+    ports:
+      - "${SERVER_HOST_PORT:-7980}:80"
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./src/quart_docker_pytest:/app/src/quart_docker_pytest
+      - ./data:/app/data
+    user: "1000:1000"
+  manage:
+    build:
+      context: .
+      target: management_build
+    command: ["init-secrets-and-caddy"]
+    container_name: "manage"
+    env_file: .env
+    volumes:
+      - "./src:/app/src"
+      - "./reverse_proxy/Caddyfiles:/app/reverse_proxy_tmpl"
+    user: "1000:1000"
+networks:
+  default:
+    name: default_network
+    external: true
