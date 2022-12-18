@@ -18,6 +18,11 @@ Changelog = "https://github.com/vincentchov/quart-docker-pytest/releases"
 [tool.poetry.dependencies]
 python = "^3.7"
 click = ">=8.0.1"
+quart = {extras = ["dotenv"], version = "^0.18.3"}
+httpx = "^0.23.1"
+Jinja2 = "^3.1.2"
+pyroute2 = "^0.7.3"
+dataclasses-json = "^0.5.7"
 
 [tool.poetry.dev-dependencies]
 Pygments = ">=2.10.0"
@@ -44,6 +49,7 @@ sphinx-click = ">=3.0.2"
 typeguard = ">=2.13.3"
 xdoctest = {extras = ["colors"], version = ">=0.15.10"}
 myst-parser = {version = ">=0.16.1"}
+pytest-asyncio = "^0.20.3"
 
 [tool.poetry.scripts]
 quart-docker-pytest = "quart_docker_pytest.__main__:main"
