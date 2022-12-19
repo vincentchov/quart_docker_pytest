@@ -72,6 +72,7 @@ force_single_line = true
 lines_after_imports = 2
 
 [tool.mypy]
+mypy_path = "typings"
 strict = true
 warn_unreachable = true
 pretty = true
