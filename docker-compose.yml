@@ -16,8 +16,8 @@ services:
       - "443:443"
       - "443:443/udp"
     volumes:
-      - "./reverse_proxy/data:/data"
-      - "./reverse_proxy/config:/config"
+      - "reverse_proxy_config:/config"
+      - "reverse_proxy_data:/data"
       - "./reverse_proxy/Caddyfiles:/etc/caddy"
     environment:
       - ACME_AGREE=true
@@ -56,3 +56,6 @@ networks:
   default:
     name: default_network
     external: true
+volumes:
+  reverse_proxy_data:
+  reverse_proxy_config:
