@@ -50,6 +50,7 @@ typeguard = ">=2.13.3"
 xdoctest = {extras = ["colors"], version = ">=0.15.10"}
 myst-parser = {version = ">=0.16.1"}
 pytest-asyncio = "^0.20.3"
+sqlfluff = "^1.4.5"
 
 [tool.poetry.scripts]
 quart-docker-pytest = "quart_docker_pytest.__main__:main"

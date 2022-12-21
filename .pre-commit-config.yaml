@@ -70,6 +70,17 @@ repos:
         name: Detect private SSH keys
       - id: mixed-line-ending
         name: Normalize line endings
+  - repo: https://github.com/sqlfluff/sqlfluff
+    rev: 1.4.5
+    hooks:
+      - id: sqlfluff-fix
+        name: Fix SQL linting errors when possible
+        entry: poetry run sqlfluff fix
+        args: ["--dialect=postgres"]
+      - id: sqlfluff-lint
+        name: Detect SQL linting errors
+        entry: poetry run sqlfluff lint
+        args: ["--dialect=postgres"]
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v2.6.0
     hooks:
