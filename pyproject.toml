@@ -83,6 +83,7 @@ show_error_context = true
 
 [tool.pytest_ini_options]
 testpaths = ["src"]
+asyncio_mode = "auto"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
