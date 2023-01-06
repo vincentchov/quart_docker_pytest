@@ -2,22 +2,6 @@
 version: "3.8"
 name: "quart_docker_pytest"
 services:
-  devtools:
-    build:
-      context: .
-      dockerfile: ./devtools/Dockerfile
-    container_name: devtools
-    env_file: .env
-    image: devtools
-    stdin_open: true
-    tty: true
-    volumes:
-      - .:/home/docker_user/cardsystem/
-      - ./docs:/home/docker_user/cardsystem/docs
-      - ./src:/home/docker_user/cardsystem/src
-      - ./tests:/home/docker_user/cardsystem/tests
-      - ./typings:/home/docker_user/cardsystem/typings
-    user: "1000:1000"
   reverse_proxy:
     build:
       context: reverse_proxy
